@@ -1,14 +1,24 @@
 import { g, auth, config } from '@grafbase/sdk'
+import { getRSCModuleInformation } from 'next/dist/build/analysis/get-page-static-info'
 
 const User = g.model('User', {
   name: g.string().length( {min: 3, max: 20}), 
   email: g.email().unique(), 
   avtarUrl: g.url(), 
-  description: g.string(), 
+  description: g.string().optional(), 
   githubUrl: g.url().optional(), 
   linkedInUrl: g.url().optional(), 
-  projects: g.relation()
+  projects: g.relation(() => Project).list().optional() // user 1 <---> 0..* project
+})
 
+const Project = g.model('Project', {
+  title: g.string().length({min: 3, max: 25}), 
+  description: g.string(), 
+  image: g.url(), 
+  liveSiteUrl: g.url(), 
+  githubUrl: g.url(), 
+  category: g.string().search(), 
+  createdBy: g.relation(() => User)
 })
 
 // Welcome to Grafbase!
