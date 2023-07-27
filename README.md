@@ -1,3 +1,7 @@
+https://www.youtube.com/watch?v=986hztrfaSQ
+tutorial above, stopped 2:49
+!! to be able to run grafbase in development run npx grafbase dev in another terminal
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

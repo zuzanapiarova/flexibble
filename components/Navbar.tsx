@@ -3,6 +3,8 @@ import { getCurrentUser } from '@/lib/session';
 import Image from 'next/image'
 import Link from 'next/link'
 import AuthProviders from './AuthProviders';
+import { signOut } from 'next-auth/react';
+import ProfileMenu from './ProfileMenu';
 
 const Navbar = async () => {
 
@@ -24,10 +26,11 @@ const Navbar = async () => {
         <div className='flex-center gap-4'>
             {//under: when session is open, we can either sign in or show the profile picture and button to add work
                 session?.user ? (
-                <>
-                    {session?.user.image && (<Image src={session.user.image} width={40} height={40} alt='profile avatar'className='rounded-full'/>)}
-                    <Link href='/create-project'>Share work</Link>
-                </>
+                    <>
+                        <ProfileMenu session={session}/>
+                        <Link href='/create-project'>Share work</Link>
+                    </>
+                
             ) : (
                 < AuthProviders />
             )

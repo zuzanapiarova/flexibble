@@ -21,24 +21,25 @@ type Provider = {
     
         useEffect(() => {
             const fetchProviders = async () => {
-                const response = await getProviders();
-                console.log(response);
-                setProviders(response);
+                const res = await getProviders();
+        
+                setProviders(res);
             }
     
             fetchProviders();
         }, []);
-
-    //if there is anything stored in providers
-    if (providers) {
-        return (
-            <div>
-                {Object.values(providers).map((provider: Provider, i) => (
-                    <button key={i} onClick={() => signIn(provider?.id)}>{provider.id}</button>
-                ))}
-            </div>
-        )
+    
+        if (providers) {
+            return (
+                <div>
+                    {Object.values(providers).map((provider: Provider, i) => (
+                        <button key={i} onClick={() => signIn(provider?.id)}>{provider.id}</button>                   
+                    ))}
+                </div>
+            )
+        } else {
+            return <></>
+        }
     }
-}
-
-export default AuthProviders
+    
+    export default AuthProviders
